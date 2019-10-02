@@ -26,6 +26,6 @@ export const loading = () => Render({
 
 export const disabled = () => Render({
   components: { PButton },
-  template: '<PButton @click="action" :disabled="true">My Button</PButton>',
+  template: '<PButton @click="action" disabled>My Button</PButton>',
   methods: { action: action('clicked') }
 });
