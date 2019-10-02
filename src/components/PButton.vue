@@ -1,5 +1,10 @@
 <template>
-  <button v-on="$listeners" :disabled="disabled" :class="classNames" :type="type">
+  <button
+    v-on="$listeners"
+    :disabled="disabled"
+    :class="classNames"
+    :type="type"
+  >
     <slot v-if="$slots.default"></slot>
     <template v-else>{{ text }}</template>
   </button>
@@ -35,8 +40,8 @@ export default {
     classNames() {
       return [
         'puto-button',
-        (this.disabled && '-disabled'),
-        (this.loading && '-loading')
+        this.disabled && '-disabled',
+        this.loading && '-loading'
       ]
     }
   }
