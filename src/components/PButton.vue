@@ -1,5 +1,5 @@
 <template>
-  <button v-on="$listeners" :class="classNames" :type="type">
+  <button v-on="$listeners" :disabled="disabled" :class="classNames" :type="type">
     <slot v-if="$slots.default"></slot>
     <template v-else>{{ text }}</template>
   </button>
