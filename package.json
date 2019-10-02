@@ -28,6 +28,7 @@
     "babel-preset-vue": "^2.0.2",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "vue-prismjs": "^1.2.0",
     "vue-template-compiler": "^2.6.10"
   }
 }
