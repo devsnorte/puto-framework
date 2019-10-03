@@ -1,4 +1,4 @@
-# puto-framework
+# Puto Framework
 
 ## Project setup
 ```
@@ -27,3 +27,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
