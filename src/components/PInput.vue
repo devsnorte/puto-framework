@@ -1,10 +1,10 @@
 <template>
   <input v-on="$listeners"
-        :disabled="disabled"
-        :class="classNames"
-        :type="type"
-        :value="value"
-        >
+    :disabled="disabled"
+    :class="classNames"
+    :type="type"
+    :value="value"
+  >
 </template>
 
 <script>
@@ -14,12 +14,12 @@ export default {
   props: {
     type: {
       type: String,
-      required: true
+      required: false
     },
 
     value: {
       type: String,
-      default: ''
+      required: true
     },
 
     disabled: {
@@ -30,8 +30,7 @@ export default {
 
     checked: {
       type: Boolean,
-      default: false,
-      required: false
+      default: false
     },
 
     loading: {
