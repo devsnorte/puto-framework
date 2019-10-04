@@ -7,12 +7,10 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import PInput from './components/PInput.vue'
 export default {
   name: 'app',
   components: {
-    HelloWorld,
-    PInput
+    HelloWorld
   }
 }
 </script>
