@@ -3,23 +3,28 @@
     :disabled="disabled"
     :class="classNames"
     :type="type"
-    :value="value"
+    v-bind:value="value"
   >
 </template>
 
 <script>
 export default {
   name: 'PInput',
-
   props: {
-    type: {
+    name: {
       type: String,
-      default: 'text'
+      default: '',
+      required: true
     },
 
     value: {
       type: String,
       required: true
+    },
+
+    type: {
+      type: String,
+      default: 'text'
     },
 
     disabled: {
@@ -39,7 +44,7 @@ export default {
   },
 
   computed: {
-    classNames() {
+    classNames () {
       return [
         'puto-input',
         (this.disabled && '-disabled'),
