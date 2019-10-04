@@ -14,8 +14,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'text',
-      required: false
+      default: 'text'
     },
 
     value: {
@@ -25,8 +24,7 @@ export default {
 
     disabled: {
       type: Boolean,
-      default: false,
-      required: false
+      default: false
     },
 
     checked: {
