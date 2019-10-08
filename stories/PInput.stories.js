@@ -9,29 +9,34 @@ export default {
 export const basicUsage = () => Render({
   components: { PInput },
   template: '<PInput @focus="action" name="input_basic" v-model="value" @input="myLog" />',
-  methods: { action: action('focused'), myLog: action('Input entered') }
+  data: () =>({ }),
+  methods: { action: action('focused'), myLog: action('Input entered ') }
 });
 
 export const inputCheckbox = () => Render({
   components: { PInput },
   template: '<PInput @change="action" type="checkbox" name="input_checkbox_checked" v-model="value" />',
+  data: () =>({ value: "checkbox value" }),
   methods: { action: action('changed')}
 });
 
 export const inputCheckboxDisabled = () => Render({
   components: { PInput },
   template: '<PInput type="checkbox" name="input_checkbox_disabled" v-model="value" disabled />',
+  data: () =>({ value: "checkbox disabled value" }),
   methods: { }
 });
 
 export const inputRadio = () => Render({
   components: { PInput },
   template: '<PInput @change="action" type="radio" name="input_radio" v-model="value" />',
+  data: () =>({ value: "radio value" }),
   methods: { action: action('changed') }
 });
 
 export const inputRadioDisabled = () => Render({
   components: { PInput },
   template: '<PInput type="radio" name="input_radio_disabled" v-model="value" disabled />',
+  data: () =>({ value: "radio disabled value" }),
   methods: { }
 });
