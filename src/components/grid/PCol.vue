@@ -16,15 +16,13 @@ export default {
   },
   computed: {
     className() {
-      let className = ''
-
-      className += this.sizeXs ? `puto-col-${this.sizeXs} ` : ''
-      className += this.sizeSm ? `puto-col-sm-${this.sizeSm} ` : ''
-      className += this.sizeMd ? `puto-col-md-${this.sizeMd} ` : ''
-      className += this.sizeLg ? `puto-col-lg-${this.sizeLg} ` : ''
-      className += this.sizeXl ? `puto-col-xl-${this.sizeXl} ` : ''
-
-      return className
+      return [
+        this.sizeXs && `puto-col-${this.sizeXs}`,
+        this.sizeSm && `puto-col-sm-${this.sizeSm}`,
+        this.sizeMd && `puto-col-md-${this.sizeMd}`,
+        this.sizeLg && `puto-col-lg-${this.sizeLg}`,
+        this.sizeXl && `puto-col-xl-${this.sizeXl}`
+      ]
     }
   }
 }
