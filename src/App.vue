@@ -14,9 +14,6 @@ import PCol from './components/grid/PCol'
 export default {
   name: 'app',
   components: {
-    PCol,
-    PRow,
-    PContainer,
     HelloWorld
   }
 }
