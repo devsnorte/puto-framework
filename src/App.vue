@@ -7,9 +7,6 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import PContainer from './components/grid/PContainer'
-import PRow from './components/grid/PRow'
-import PCol from './components/grid/PCol'
 
 export default {
   name: 'app',
