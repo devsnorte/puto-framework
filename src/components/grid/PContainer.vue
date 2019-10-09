@@ -1,30 +1,19 @@
 <template>
-  <div v-bind:class="[fluid ? 'container-fluid' : 'container']">
+  <div :class="className">
     <slot></slot>
-    <div class="row">
-
-    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'PContainer',
-    props: {
-      fluid: Boolean
+export default {
+  name: 'PContainer',
+  props: {
+    fluid: Boolean
+  },
+  computed: {
+    className() {
+      return this.fluid ? 'puto-container-fluid' : 'puto-container'
     }
   }
+}
 </script>
-
-<style scoped lang="scss">
-  @import './grid';
-
-  .container {
-    @include make-container();
-    @include make-container-max-widths();
-  }
-
-  .container-fluid {
-    @include make-container();
-  }
-</style>

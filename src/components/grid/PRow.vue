@@ -1,19 +1,11 @@
 <template>
-  <div class="row">
+  <div class="puto-row">
     <slot></slot>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "PRow"
-  }
+export default {
+  name: 'PRow'
+}
 </script>
-
-<style scoped lang="scss">
-  @import './grid';
-
-  .row {
-    @include make-row();
-  }
-</style>

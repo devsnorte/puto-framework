@@ -10,10 +10,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "bootstrap-4-grid": "^3.1.1",
     "core-js": "^2.6.5",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^8.0.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
