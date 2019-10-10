@@ -3,7 +3,8 @@
     :disabled="disabled"
     :class="classNames"
     :type="type"
-    v-bind:value="value"
+    v-model="model"
+    @input="$emit('input', $event.target.value)"
   >
 </template>
 
@@ -41,7 +42,11 @@ export default {
       default: false
     }
   },
-
+  data () {
+    return {
+      model: this.value
+    }
+  },
   computed: {
     classNames () {
       return [
@@ -49,6 +54,13 @@ export default {
         (this.disabled && '-disabled'),
         (this.loading && '-loading')
       ]
+    },
+
+    listeners() {
+      // Delete duplicate listeners
+      const listeners = {...this.$listeners}
+      delete listeners.input
+      return listeners
     }
   }
 }

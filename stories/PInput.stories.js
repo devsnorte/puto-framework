@@ -8,9 +8,9 @@ export default {
 
 export const basicUsage = () => Render({
   components: { PInput },
-  template: '<PInput @focus="action" name="input_basic" v-model="value" @input="myLog" />',
-  data: () =>({ }),
-  methods: { action: action('focused'), myLog: action('Input entered ') }
+  template: '<PInput @focus="action" name="input_basic" v-model="name" @input="myLog(name)" />',
+  data: () =>({ name: '' }),
+  methods: { action: action('focused'), myLog: action('input') }
 });
 
 export const inputCheckbox = () => Render({
