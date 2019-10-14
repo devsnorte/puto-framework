@@ -3,7 +3,7 @@
 Brief description of what was done with this PR. This text must contain useful data to the understanding of what was done.
 
 
-##  (Issues)
+## Resolve (Issues)
 
 Issues that were solved with the PR
 * closes (#number)
