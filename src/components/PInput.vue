@@ -3,6 +3,8 @@
     :disabled="disabled"
     :class="classNames"
     :type="type"
+    :name="name"
+    :value="value"
     v-model="model"
     @input="$emit('input', $event.target.value)"
   >
