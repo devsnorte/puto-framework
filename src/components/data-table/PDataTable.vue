@@ -17,7 +17,7 @@
         v-for="(header, k) in headers"
         :key="`p-tr-${k}-td-${header.name}`"
         @click="$emit('cell-click', { item, col: header.name })">
-        {{ format(header)(item) }}
+        {{ format(header, item) }}
       </p-data-table-cell>
     </p-data-table-row>
   </table>
@@ -57,14 +57,12 @@ export default {
     }
   },
   methods: {
-    format: function (field) {
-      return function (item) {
-        const value = item[field.name]
-        if (field.format && typeof field.format === 'function') {
-          return field.format(value)
-        }
-        return `${value}`
+    format: function (field, item) {
+      const value = item[field.name]
+      if (field.format && typeof field.format === 'function') {
+        return field.format(value)
       }
+      return `${value}`
     }
   }
 }
