@@ -4,7 +4,7 @@
       <p-data-table-header
         v-for="(header, k) in headers"
         :key="`p-td-${k}`"
-        @click="$emit('header-click', { header })">
+        @click="$emit('header-click', header)">
         {{ header.label }}
       </p-data-table-header>
     </p-data-table-row>
@@ -16,7 +16,7 @@
       <p-data-table-cell
         v-for="(header, k) in headers"
         :key="`p-tr-${k}-td-${header.name}`"
-        @click="$emit('cell-click', { item, col: header.name })">
+        @click="$emit('cell-click', { item, column: header.name })">
         {{ format(header, item) }}
       </p-data-table-cell>
     </p-data-table-row>
@@ -48,7 +48,7 @@ export default {
     noHeaders: Boolean
   },
   computed: {
-    classNames: function () {
+    classNames () {
       return [
         'puto-data-table',
         !this.items.length && '-empty',
@@ -57,12 +57,12 @@ export default {
     }
   },
   methods: {
-    format: function (field, item) {
-      const value = item[field.name]
-      if (field.format && typeof field.format === 'function') {
-        return field.format(value)
+    format (header, item) {
+      const value = item[header.name]
+      if (header.format && typeof header.format === 'function') {
+        return header.format(value)
       }
-      return `${value}`
+      return value
     }
   }
 }
