@@ -46,7 +46,8 @@ export default {
       required: true
     },
     striped: Boolean,
-    noHeaders: Boolean
+    noHeaders: Boolean,
+    noSort: Boolean
   },
   data () {
     return {
@@ -63,10 +64,10 @@ export default {
       ]
     },
     orderedItems () {
-      const { sortingBy: column, sortDirection: direction } = this
-      if (direction !== '' && column) {
-        const desc = direction === 'desc'
-        return this.sortBy(this.items, column, desc)
+      const { sortingBy, sortDirection, noSort } = this
+      if (!noSort && sortDirection !== '' && sortingBy) {
+        const desc = sortDirection === 'desc'
+        return this.sortBy(this.items, sortingBy, desc)
       }
       return this.items
     }
@@ -101,6 +102,11 @@ export default {
       return arr.slice(0).sort(byColumnName)
     },
     toggleSort(columnName) {
+      if (this.noSort) {
+        this.sortDirection = ''
+        this.sortingBy = null
+        return
+      }
       const column = this.headers
         .find(header => header.name === columnName)
       if (column.sortable === false) {
