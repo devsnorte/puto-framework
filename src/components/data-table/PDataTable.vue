@@ -1,27 +1,35 @@
 <template>
-  <table :class="classNames">
-    <PDataTableRow v-if="!noHeaders">
-      <PDataTableHeader
-        v-for="(header, k) in headers"
-        :key="`p-td-${k}`"
-        :sort="isSorting(header)"
-        @click="toggleSort(header.name)">
-        {{ header.label }}
-      </PDataTableHeader>
-    </PDataTableRow>
-    <PDataTableRow
-      v-for="(item, k) in orderedItems"
-      :key="`p-tr-${k}`"
-      :striped="striped && k % 2 < 1"
-      @click="$emit('row-click', item)">
-      <PDataTableCell
-        v-for="(header, k) in headers"
-        :key="`p-tr-${k}-td-${header.name}`"
-        @click="$emit('cell-click', { item, column: header.name })">
-        {{ format(header, item) }}
-      </PDataTableCell>
-    </PDataTableRow>
-  </table>
+  <div class="puto-data-table-wrapper">
+    <table :class="classNames">
+      <PDataTableRow v-if="!noHeaders">
+        <PDataTableHeader
+          v-for="(header, k) in headers"
+          :key="`p-td-${k}`"
+          :sort="isSorting(header)"
+          @click="toggleSort(header.name)">
+          {{ header.label }}
+        </PDataTableHeader>
+      </PDataTableRow>
+      <PDataTableRow
+        v-for="(item, k) in processedItems"
+        :key="`p-tr-${k}`"
+        :striped="striped && k % 2 < 1"
+        @click="$emit('row-click', item)">
+        <PDataTableCell
+          v-for="(header, k) in headers"
+          :key="`p-tr-${k}-td-${header.name}`"
+          @click="$emit('cell-click', { item, column: header.name })">
+          {{ format(header, item) }}
+        </PDataTableCell>
+      </PDataTableRow>
+    </table>
+    <PDataTablePagination
+      v-if="!noPagination"
+      v-bind="innerPagination"
+      @prev="handlePrevPageNavigation"
+      @next="handleNextPageNavigation"
+    />
+  </div>
 </template>
 
 <script>
@@ -45,12 +53,22 @@ export default {
       type: Array,
       required: true
     },
+    itemsPerPage: {
+      type: Number,
+      default: 10
+    },
+    pagination: {
+      type: Object,
+      default: {}
+    },
     striped: Boolean,
     noHeaders: Boolean,
-    noSort: Boolean
+    noSort: Boolean,
+    noPagination: Boolean
   },
   data () {
     return {
+      currentPage: 1,
       sortDirection: '',
       sortingBy: null
     }
@@ -63,13 +81,32 @@ export default {
         this.loading && '-loading',
       ]
     },
-    orderedItems () {
+    innerPagination: {
+      get() {
+        return this.pagination
+      },
+      set(val) {
+        this.$emit('pagination:update', val)
+      }
+    },
+    pageStart () {
+      return (this.currentPage - 1) * this.itemsPerPage
+    },
+    pageEnd () {
+      return (this.currentPage * this.itemsPerPage) + 1
+    },
+    processedItems () {
       const { sortingBy, sortDirection, noSort } = this
       if (!noSort && sortDirection !== '' && sortingBy) {
         const desc = sortDirection === 'desc'
-        return this.sortBy(this.items, sortingBy, desc)
+        const sorted = this.sortBy(this.items, sortingBy, desc)
+        return this.noPagination
+          ? sorted
+          : sorted.slice(this.pageStart, this.pageEnd)
       }
-      return this.items
+      return this.noPagination
+        ? this.items
+        : this.items.slice(this.pageStart, this.pageEnd)
     }
   },
   methods: {
