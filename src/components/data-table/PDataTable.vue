@@ -59,7 +59,7 @@ export default {
     },
     pagination: {
       type: Object,
-      default: {}
+      default: () => ({})
     },
     striped: Boolean,
     noHeaders: Boolean,
