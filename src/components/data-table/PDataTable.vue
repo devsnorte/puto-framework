@@ -102,23 +102,21 @@ export default {
       return arr.slice(0).sort(byColumnName)
     },
     toggleSort(columnName) {
+      const column = this.headers
+        .find(header => header.name === columnName)
+      this.$emit('header-click', column)
       if (this.noSort) {
         this.sortDirection = ''
         this.sortingBy = null
         return
       }
-      const column = this.headers
-        .find(header => header.name === columnName)
-      if (column.sortable === false) {
+      const { sortingBy, sortDirection } = this
+      if (column.sortable === false || sortDirection === 'desc') {
         this.sortDirection = ''
-      } else  if (this.sortingBy !== column.name) {
+      } else if (sortingBy !== column.name || sortDirection === '') {
         this.sortDirection = 'asc'
-      } else if (this.sortDirection === '') {
-        this.sortDirection = 'asc'
-      } else if (this.sortDirection === 'asc') {
+      } else if (sortDirection === 'asc') {
         this.sortDirection = 'desc'
-      } else {
-        this.sortDirection = ''
       }
       this.sortingBy = column.name
     }
