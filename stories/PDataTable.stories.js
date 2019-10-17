@@ -26,7 +26,7 @@ export const basicUsage = () =>
     }
   })
 
-export const disabledSort = () =>
+export const withNoSortProp = () =>
   Render({
     components: { PDataTable },
     template: `<PDataTable no-sort :headers="headers" :items="items" />`,
